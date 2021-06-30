@@ -14,7 +14,9 @@ class Solution:
                     i += 1
                 # a pair is found such tha nums[i]>2*nums[j] and i<j
                 else:
-                    # as the array is sorted, so on finding one such element -> ?
+                    # as the array is sorted, so on finding one such element ->
+                    # move the 'j' pointer as we need not compare it with rest of the elements in 'left' array
+                    # so increment the count by number of remaning element in left array which we need not compare with the element 'j' was pointing to
                     cnt += len(left)-i
                     j += 1
 
