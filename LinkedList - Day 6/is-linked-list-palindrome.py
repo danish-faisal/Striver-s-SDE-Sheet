@@ -5,6 +5,8 @@
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
+
+# brute force approach -> hash first-half nodes while traversing, then comparing when traversion the second-half
 class Solution:
     def isPalindrome(self, head: ListNode) -> bool:
         dummy = ListNode()
@@ -28,7 +30,7 @@ class Solution:
             if dummy.val!=slow.val:
                 return False
             slow=slow.next
-            
+        # reverse-back the second-half before returning
         return True
     
     def reverseList(self,head: ListNode) -> ListNode:
