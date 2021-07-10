@@ -25,8 +25,8 @@ class Solution:
             curr = prev.next
             nex = curr.next
             # reverse k-nodes in place
-            # ??
             for i in range(1,k):
+                # memorise/understand/create logic
                 curr.next = nex.next
                 nex.next = prev.next
                 prev.next=nex
