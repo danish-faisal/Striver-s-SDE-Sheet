@@ -1,11 +1,11 @@
 # https://www.geeksforgeeks.org/find-a-repeating-and-a-missing-number/
 
-# approach 1 -> sort the array
-# approach 2 -> hashmap or count array
-# approach 3 -> S = (x-y), S^2 = (x^2-y^2) => (x+y)=(x^2-y^2)/(x-y) => solve (x+y)&(x-y) to get x then y
+# approach 1 -> sort the array      [method 1]
+# approach 2 -> hashmap or count array      [mehtod 2 & 6]
+# approach 3 -> S = (x-y), S^2 = (x^2-y^2) => (x+y)=(x^2-y^2)/(x-y) => solve (x+y)&(x-y) to get x then y        [method 7]
 # x is missing no. & y is the repeating no. => problem of storing high values of summation and square summation
 
-# approach 4 -> using XOR
+# approach 4 -> using XOR       [method 5]
 
 def getTwoElements(arr, n):
     global x, y
