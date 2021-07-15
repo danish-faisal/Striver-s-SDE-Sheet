@@ -1,24 +1,41 @@
-# https://leetcode.com/problems/subarray-sum-equals-k/
+# https://www.geeksforgeeks.org/find-the-largest-subarray-with-0-sum/
 
-# have to return total no. of occurences of sub-arrays that sums up to k
-
-class Solution:
-    def subarraySum(self, nums: List[int], k: int) -> int:
-        # resultant variable
-        cnt = 0
-        # sum variable
-        tsum = 0
-        # hashmap - to store the no. of occurences of a sub-array sum and no.d in the array
-        obj = {}
-        # if array contains 0 or a sequence like -4,4 or 1,2,1,-4 occurs that results in 0
-        obj[0]=1
-        for i in nums:
-            tsum += i
-            # a sub-array found -> add to the count
-            if tsum-k in obj:
-                # https://leetcode.com/problems/subarray-sum-equals-k/discuss/190674/Python-O(n)-Based-on-%22running_sum%22-concept-of-%22Cracking-the-coding-interview%22-book
-                # https://leetcode.com/problems/subarray-sum-equals-k/discuss/535507/Explanation-to-why-map.get(sum-k)-is-done-than-count%2B%2B
-                cnt+=obj[tsum-k]
-            # add the sum to the map
-            obj[tsum]=1 + (obj[tsum] if tsum in obj else 0)
-        return cnt
+# Returns the maximum length
+def maxLen(arr):
+     
+    # NOTE: Dictonary in python in implemented as Hash Maps
+    # Create an empty hash map (dictionary)
+    hash_map = {}
+ 
+    # Initialize result
+    max_len = 0
+ 
+    # Initialize sum of elements
+    curr_sum = 0
+ 
+    # Traverse through the given array
+    for i in range(len(arr)):
+         
+        # Add the current element to the sum
+        curr_sum += arr[i]
+ 
+        if curr_sum is 0:
+            max_len = i + 1
+ 
+        # NOTE: 'in' operation in dictionary to search
+        # key takes O(1). Look if current sum is seen
+        # before
+        if curr_sum in hash_map:
+            max_len = max(max_len, i - hash_map[curr_sum] )
+        else:
+ 
+            # else put this sum in dictionary
+            hash_map[curr_sum] = i
+ 
+    return max_len
+ 
+ 
+# test array
+arr = [15, -2, 2, -8, 1, 7, 10, 13]
+  
+print "Length of the longest 0 sum subarray is % d" % maxLen(arr)
