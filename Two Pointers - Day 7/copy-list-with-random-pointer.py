@@ -1,9 +1,59 @@
 # https://leetcode.com/problems/copy-list-with-random-pointer/
 
+# APPROACH 2
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, x: int, next: 'Node' = None, random: 'Node' = None):
+        self.val = int(x)
+        self.next = next
+        self.random = random
+"""
+
+class Solution:
+    def copyRandomList(self, head: 'Node') -> 'Node':
+        if not head:
+            return
+        temp=head
+        # create copy-nodes of the same value as org-node and have the copy-node as the next-node of the org-node
+        while temp:
+            nxt=temp.next
+            new=Node(temp.val)
+            temp.next=new
+            new.next=nxt
+            temp=temp.next.next
+        # initialize temp to head and sec to first copied-node
+        temp=head
+        sec=temp.next
+        # while traversing the list, arrange the random pointers by 
+        # make the copied-node random-ptr point to the next-node of the random-node pointed by org-node
+        while temp:
+            sec.random=temp.random.next if temp.random else None
+            sec=sec.next.next if sec.next else None
+            temp=temp.next.next
+        temp=head
+        # have sec as head-ptr to the copied-list
+        sec=cur=temp.next
+        # arrange the next-ptr correctly of both the lists
+        while temp:
+            # get the next-node in copied-list
+            snxt=cur.next.next if cur.next else None
+            # make curr-org-node point to next-org-node
+            temp.next=cur.next
+            # point first-copied-node to next-copied-node
+            cur.next=snxt
+            # move to next-node in org-list
+            temp=temp.next
+            # move to next-node in copied-list
+            cur=cur.next
+        return sec
+
 # APPROACH 1 - USING HASHMAP
 
 class Solution:
     def copyRandomList(self, head: 'Node') -> 'Node':
+        if not head:
+            return
         copy={}
         # hack to escape from KeyError
         copy[None]=None
