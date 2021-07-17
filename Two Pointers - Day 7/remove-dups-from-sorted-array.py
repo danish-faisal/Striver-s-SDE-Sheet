@@ -13,5 +13,5 @@ class Solution:
             nums[j]=nums[i]
             # incr 2nd ptr
             j+=1
-        # return 2nd ptr as it'll be at nth index where 0 to (n-1) are on-repeated digits
+        # return 2nd ptr as it'll be at nth index where 0 to (n-1) are non-repeated digits
         return j
