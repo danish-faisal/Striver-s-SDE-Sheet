@@ -1,6 +1,6 @@
 # https://leetcode.com/problems/copy-list-with-random-pointer/
 
-# APPROACH 2
+# APPROACH 2 - Two Pointers
 """
 # Definition for a Node.
 class Node:
