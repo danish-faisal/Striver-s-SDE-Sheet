@@ -1,5 +1,7 @@
 # https://www.geeksforgeeks.org/find-maximum-meetings-in-one-room/
 
+# https://www.geeksforgeeks.org/activity-selection-problem-greedy-algo-1/
+
 def maxMeeting(l, n):
     # Sorting of meeting according to their finish time.
     l.sort(key = lambda x: x[1])
@@ -14,18 +16,18 @@ def maxMeeting(l, n):
             res.append(l[i][2])
             endmax=l[i][1]
     # Print final selected meetings
-    for i in ans:
-        print(i + 1, end = " ")
+    for i in res:
+        print(i, end = " ")
     print()
         
     
 if __name__ == '__main__':
      
     # Starting time
-    s = [ 3, 1, 0, 5, 8, 5 ]
+    s = [ 1, 3, 0, 5, 8, 5 ]
  
     # Finish time
-    f = [ 4, 2, 6, 7, 9, 9 ]
+    f = [ 2, 4, 6, 7, 9, 9 ]
  
     # Number of meetings.
     n = len(s)
