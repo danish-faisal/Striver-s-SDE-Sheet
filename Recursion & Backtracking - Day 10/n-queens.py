@@ -1,6 +1,8 @@
 # https://leetcode.com/problems/n-queens/
 # https://www.geeksforgeeks.org/n-queen-problem-backtracking-3/
 
+# check gfg link for brute-force solution -> where instead of hashing we check if the same-row, same-diagonals are filled
+# by iterating over the board for each position
 
 class Solution:
     def solveNQueens(self, n: int) -> List[List[str]]:
