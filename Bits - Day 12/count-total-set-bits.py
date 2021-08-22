@@ -1,4 +1,5 @@
-
+# https://practice.geeksforgeeks.org/problems/count-total-set-bits-1587115620/1#
+# https://www.geeksforgeeks.org/count-total-set-bits-in-all-numbers-from-1-to-n-set-2/
 
 #Function to return sum of count of set bits in the integers from 1 to n.
 class Solution:
