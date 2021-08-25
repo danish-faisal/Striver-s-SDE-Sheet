@@ -18,8 +18,10 @@ def setBitNumber(n):
 
 	msb = 0
 
+    # keep dividing n/2 until it becomes 1 i.e., only MSB bit remains 
+    # and maintain the count of number of times division is done
 	while (n != 1):
 		n = int(n / 2)
 		msb += 1
-
+    # return the MSB in terms of it decimal value
 	return 1<<msb
