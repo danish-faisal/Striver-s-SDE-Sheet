@@ -1,6 +1,5 @@
 # https://www.geeksforgeeks.org/array-implementation-of-queue-simple/
 
-# Python3 program to implement a queue using an array
 class Queue:
     # To initialize the object.
     def __init__(self, c):
@@ -9,7 +8,7 @@ class Queue:
         self.capacity = c
  
     # Function to insert an element at the rear of the queue
-    def queueEnqueue(self, data):
+    def Enqueue(self, data):
         # Check queue is full or not
         if(self.capacity == self.rear):
             print("\nQueue is full")
@@ -20,7 +19,7 @@ class Queue:
             self.rear += 1
  
     # Function to delete an element from the front of the queue
-    def queueDequeue(self):
+    def Dequeue(self):
         # If queue is empty
         if(self.front == self.rear):
             print("Queue is empty")
@@ -31,7 +30,7 @@ class Queue:
             self.rear -= 1
  
     # Function to print queue elements
-    def queueDisplay(self):
+    def printQueue(self):
         if(self.front == self.rear):
             print("\nQueue is Empty")
  
@@ -40,7 +39,7 @@ class Queue:
             print(i, "<--", end = '')
      
     # Print front of queue
-    def queueFront(self):
+    def Front(self):
         if(self.front == self.rear):
             print("\nQueue is Empty")
  
@@ -52,29 +51,29 @@ if __name__=='__main__':
     q = Queue(4)
  
     # Print queue elements
-    q.queueDisplay()
+    q.printQueue()
  
     # Inserting elements in the queue
-    q.queueEnqueue(20)
-    q.queueEnqueue(30)
-    q.queueEnqueue(40)
-    q.queueEnqueue(50)
+    q.Enqueue(20)
+    q.Enqueue(30)
+    q.Enqueue(40)
+    q.Enqueue(50)
  
     # Print queue elements
-    q.queueDisplay()
+    q.printQueue()
  
     # Insert element in queue
-    q.queueEnqueue(60)
+    q.Enqueue(60)
  
     # Print queue elements
-    q.queueDisplay()
+    q.printQueue()
  
-    q.queueDequeue()
-    q.queueDequeue()
+    q.Dequeue()
+    q.Dequeue()
     print("\n\nafter two node deletion\n")
  
     # Print queue elements
-    q.queueDisplay()
+    q.printQueue()
  
     # Print front of queue
-    q.queueFront()
+    q.Front()
