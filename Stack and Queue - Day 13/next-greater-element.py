@@ -1,5 +1,5 @@
-# https://leetcode.com/problems/next-greater-element-ii/submissions/
-# https://www.geeksforgeeks.org/next-greater-element/
+# https://leetcode.com/problems/next-greater-element-ii/
+# https://www.geeksforgeeks.org/find-the-next-greater-element-in-a-circular-array/
 
 # Optimal Approach: TC: O(N), SC: O(1)
 class Solution:
@@ -13,7 +13,7 @@ class Solution:
             # pop all the elements smaller than the current-element form the stack
             while len(stack)!=0 and stack[-1]<=nums[i%n]:
                 stack.pop()
-            # only need to store BGE elements for 0 to n elements
+            # only need to store NGE elements for 0 to n elements
             # for first n iterations stack will have the relevant greater elements for the last-elements
             if i<n:
                 # store the stack-top as the NGE for the curr-ele in iteration
