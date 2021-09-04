@@ -16,8 +16,8 @@ class LRUCache:
         # dictionary for hashing key:value pairs
         self.dic = dict()
         # head & tail of the DoublyLinkedList Cache
-        self.head = Node(0, 0)
-        self.tail = Node(0, 0)
+        self.head = Node(-1, -1)
+        self.tail = Node(-1, -1)
         self.head.next = self.tail
         self.tail.prev = self.head
 
