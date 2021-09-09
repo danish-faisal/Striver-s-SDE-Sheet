@@ -31,7 +31,7 @@ class Solution:
     def largestRectangleArea(self, heights: List[int]) -> int:
         n=len(heights)
         stack=[]
-        # to declare an array of the same size as heights-arr, also has a better way in Python
+        # to declare an array of the same size as heights-arr
         leftSmall=[0 for x in heights]
         rightSmall=[0 for x in heights]
         # To get the Left-Smaller-Index for each element

@@ -1,72 +1,58 @@
 # https://leetcode.com/problems/rotting-oranges/
 
-from collections import deque
-
-# Time complexity: O(rows * cols) -> each cell is visited at least once
+# Time complexity: O(rows * cols) * 4 -> each cell is visited at least once; 4 as we check all 4 dirs for each cell
 # Space complexity: O(rows * cols) -> in the worst case if all the oranges are rotten they will be added to the queue
+
+from collections import deque
 
 class Solution:
     def orangesRotting(self, grid: List[List[int]]) -> int:
+        m=len(grid)     # no. of rows
+        n=len(grid[0])  # no. of cols
+        mins=total=count=0
+        rotten=deque()  # declare a deque
         
-        # number of rows
-        rows = len(grid)
-        if rows == 0:  # check if grid is empty
-            return -1
+        # iterate over each cell in the grid
+        for i in range(m):
+            for j in range(n):
+                # calc total-no of non-empty cells
+                if grid[i][j]!=0:
+                    total+=1
+                # count no. of rotten oranges
+                if grid[i][j]==2:
+                    rotten.append([i,j])
         
-        # number of columns
-        cols = len(grid[0])
-        
-        # keep track of fresh oranges
-        fresh_cnt = 0
-        
-        # queue with rotten oranges (for BFS)
-        rotten = deque()
-        
-        # visit each cell in the grid
-        for r in range(rows):
-            for c in range(cols):
-                if grid[r][c] == 2:
-                    # add the rotten orange coordinates to the queue
-                    rotten.append((r, c))
-                elif grid[r][c] == 1:
-                    # update fresh oranges count
-                    fresh_cnt += 1
-        
-        # keep track of minutes passed.
-        minutes_passed = 0
-        
-        # If there are rotten oranges in the queue and there are still fresh oranges in the grid keep looping
-        while rotten and fresh_cnt > 0:
+        # dirs one can move in a grid from a cell: left, top, right, bottom
+        dx=[0,-1,0,1]
+        dy=[-1,0,1,0]
 
-            # update the number of minutes passed
-            # it is safe to update the minutes by 1, since we visit oranges level by level in BFS traversal.
-            minutes_passed += 1
-            
-            # process rotten oranges on the current level
-            for _ in range(len(rotten)):
-                x, y = rotten.popleft()
-                
-                # visit all the adjacent cells
-                for dx, dy in [(1,0), (-1,0), (0,1), (0,-1)]:
-                    # calculate the coordinates of the adjacent cell
-                    xx, yy = x + dx, y + dy
-                    # ignore the cell if it is out of the grid boundary
-                    if xx < 0 or xx == rows or yy < 0 or yy == cols:
+        while len(rotten)!=0:
+            # getting no. of rotten-oranges in the deque, before each minute
+            k=len(rotten)
+            count+=k
+            # for each rotten-orange cell in the deque
+            while k>0:
+                pair=rotten[0]
+                x=pair[0]
+                y=pair[1]
+                # pop_front the rotten orange whose cell we're iterating over
+                rotten.popleft()
+                for i in range(4):
+                    # get the next-dir we're checking in L U R D
+                    nx=x+dx[i]
+                    ny=y+dy[i]
+                    # check we're within bounds and the cell-val==1
+                    if (nx<0 or ny<0 or nx>=m or ny>=n or grid[nx][ny]!=1):
                         continue
-                    # ignore the cell if it is empty '0' or visited before '2'
-                    if grid[xx][yy] == 0 or grid[xx][yy] == 2:
-                        continue
-                        
-                    # update the fresh oranges count
-                    fresh_cnt -= 1
-                    
-                    # mark the current fresh orange as rotten
-                    grid[xx][yy] = 2
-                    
-                    # add the current rotten to the queue
-                    rotten.append((xx, yy))
-
+                    # mark the affected cell as rotten
+                    grid[nx][ny]=2
+                    # push the affected cell in the deque
+                    rotten.append([nx,ny])
+                # reduce the no. of rotten-oranges to check in this iteration
+                k-=1
+            # if deque is not-empty, incr mins
+            if len(rotten)!=0:
+                mins+=1
         
-        # return the number of minutes taken to make all the fresh oranges to be rotten
-        # return -1 if there are fresh oranges left in the grid (there were no adjacent rotten oranges to make them rotten)
-        return minutes_passed if fresh_cnt == 0 else -1
+        # return mins if the no. of pushed-rotten-oranges in the deque == total-oranges; else -1
+        return mins if total==count else -1
