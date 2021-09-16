@@ -25,7 +25,7 @@ def getNthRoot(n,m):
             # cut the left-half of curr-range
             low=mid
         else:
-            # cut the right-haf of curr-range
+            # cut the right-half of curr-range
             high=mid
     
     print(low," ",high)
