@@ -37,4 +37,4 @@ class Solution:
 
 
 # for Recursive Solution: need to use extra logic, to keep account of height along with the lines to update a node
-# as In reursive inorder traversal is used, the nodes in the right-sub-tree of upper-level will be visited after the nodes in left-sub-tree for lower-level
+# as In recursive inorder traversal is used, the nodes in the right-sub-tree of upper-level will be visited after the nodes in left-sub-tree for lower-level
