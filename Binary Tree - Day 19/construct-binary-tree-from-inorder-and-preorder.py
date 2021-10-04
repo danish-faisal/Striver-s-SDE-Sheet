@@ -1,10 +1,10 @@
 # https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/
 
-# Optimal Soln: TC - O(N), SC - O(N) + Auxillary O(N)
+# Optimal Soln: TC - O(N) [+ logn in some cases for HashMap], SC - O(N) + Auxillary O(N)
 
 class Solution:
     def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
-        # Hash the nodes-val with their index-val given in inorder 
+        # Hash the nodes-val with their index-val given in inorder
         inMap={}
         for i in range(len(inorder)):
             inMap[inorder[i]]=i
@@ -30,7 +30,7 @@ class Solution:
         # & inorder to (inStart, inRoot-1) "to the left of root"
         root.left=self.buildingTree(preorder,preStart+1,preStart+numsLeft,inorder,inStart,inRoot-1,inMap)
 
-        # for right-subtree, update the range of preorder to (preStart+numsLeft+1, preEnd) "whatever left to the right og numsLeft"
+        # for right-subtree, update the range of preorder to (preStart+numsLeft+1, preEnd) "whatever left to the right of numsLeft"
         # & inorder to (inRoot+1, inEnd) "to the right of root"
         root.right=self.buildingTree(preorder,preStart+numsLeft+1,preEnd,inorder,inRoot+1,inEnd,inMap)
         
