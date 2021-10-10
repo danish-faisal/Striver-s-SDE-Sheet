@@ -10,11 +10,11 @@ class Solution:
         if n==0:
             return 0
 
-        negative=False
+        negative=False      # flag to mark if negative-no
         otherchars=['+','-']
         ans=0
         idx=0
-        for c in s:
+        for c in s:         # check for spaces and skip them
             if c==' ':
                 idx+=1
             else:
@@ -23,7 +23,7 @@ class Solution:
         if idx>=n:
             return 0
         
-        if s[idx]=='-':
+        if s[idx]=='-':        # check the char after spaces if its a + or - sign
             negative=True
         if s[idx] in otherchars:
             idx+=1
@@ -32,8 +32,8 @@ class Solution:
         
         u=1
         
-        for i in range(idx,n):
-            val=ord(s[i])-ord('0')
+        for i in range(idx,n):          # check if the string after spaces and sign starts with a number
+            val=ord(s[i])-ord('0')      # if a no. then the diff b/w ascii value of curr-char and '0' char  will be between 0 and 9
             if val>=0 and val<=9:
                 ans*=u
                 ans+=val
@@ -41,7 +41,7 @@ class Solution:
             else:
                 break
         
-        if ans>(2**31)-1 or (ans>(2**31) and negative):
+        if ans>(2**31)-1 or (ans>(2**31) and negative):         # for too high and too low no.s
             ans=(2**31)-1 if not negative else (2**31)
         
         return 0-ans if negative else ans
