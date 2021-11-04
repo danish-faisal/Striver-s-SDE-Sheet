@@ -1,4 +1,4 @@
-
+# https://leetcode.com/problems/flatten-binary-tree-to-linked-list/
 
 # Definition for a binary tree node.
 # class TreeNode:
@@ -6,6 +6,24 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
+# Morris Traversal: TC - O(N), SC - O(1)
+class Solution:
+    def flatten(self, root: Optional[TreeNode]) -> None:
+        # Do not return anything, modify root in-place instead.
+        if root==None:
+            return
+        
+        curr=root
+        while curr!=None:
+            if curr.left!=None:
+                prev=curr.left
+                while prev.right:       # go to right-most-leaf-node in left-subtree
+                    prev=prev.right
+                prev.right = curr.right     # point the rightmost-leftnode to right-subtree
+                curr.right=curr.left        # make the node's left-subtree move-to right
+                curr.left=None              # make the node's left-subtree to null
+            curr=curr.right     # move to next-node in the line
 
 # Iterative Soln: TC - O(N), SC - O(N)
 class Solution:
