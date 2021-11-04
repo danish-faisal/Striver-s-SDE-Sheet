@@ -16,5 +16,5 @@ class Solution:
         if left.val!=right.val:
             return False
                 # check left-subtree of left-child == right-subtree of right-child for symmetricity
-                # check right-subtree of left-chilf == left-subtree of right-child for symmetricity
+                # check right-subtree of left-child == left-subtree of right-child for symmetricity
         return self.isSymmetricHelper(left.left,right.right) and self.isSymmetricHelper(left.right,right.left)
